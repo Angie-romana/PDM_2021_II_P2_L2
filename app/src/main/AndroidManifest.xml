@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDM_2021_II_P2_L2">
+        <activity android:name=".MatriculaActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
