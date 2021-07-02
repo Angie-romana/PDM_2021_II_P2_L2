@@ -1,9 +1,13 @@
 package hn.edu.ujcv.pdm_2021_ii_p2_l2
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
+import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_matricula.*
 
@@ -11,6 +15,7 @@ class MatriculaActivity : AppCompatActivity() {
     var alumno: HashMap<Int,String> = hashMapOf()
     var clase: HashMap<Int,String> = hashMapOf()
     var matricula: HashMap<Int,String> = hashMapOf()
+    var codigoClaseARegistrar = " "
 
     var listItems = ArrayList<String>()
     var adapter: ArrayAdapter<String>? = null
@@ -29,6 +34,7 @@ class MatriculaActivity : AppCompatActivity() {
         var intent = intent
         alumno = intent.getSerializableExtra("alumnos") as HashMap<Int, String>
         clase = intent.getSerializableExtra("clases") as HashMap<Int, String>
+        txvMensajeError.isVisible = false
     }
 
     var eliminarMatricula: View.OnClickListener = View.OnClickListener { view ->
@@ -45,10 +51,17 @@ class MatriculaActivity : AppCompatActivity() {
         lstMatricula.adapter = adapter
     }
 
+   /* private fun irNotas(){
+        val intent = Intent(this, NotasActivity::class.java)
+        intent.putExtra("alumnos",alumno)
+        intent.putExtra("clases",clase)
+        startActivity(intent)
+    }*/
+
     private fun guardarMatricula(array:ArrayList<String>,numeroCuenta:String){
         val dato = StringBuilder()
         val lista = array.toString().split("|","=")
-        var codigoClase = lista[0]
+        var codigoClase = lista[0].substring(1)
         dato.append(numeroCuenta).append("|")
         dato.append(codigoClase)
         matricula.put(numero,dato.toString())
@@ -58,17 +71,18 @@ class MatriculaActivity : AppCompatActivity() {
     private fun validarClaseMatriculada():Boolean{
         var numeroCuenta: String
         var codigoClase:String
+        txvMensajeError.isVisible = false
         for(matriculas in matricula){
             val lista = matriculas.toString().split("|","=")
             numeroCuenta = lista[1]
             codigoClase = lista[2]
             var matriculaValor = matriculas.value
-            var matriculaNumeroCuenta = matriculaValor.contains(numeroCuenta)
-            var matriculaCodigoClase = matriculaValor.contains(codigoClase)
-            //esta parte no funciona todavia
-            if(matriculaValor.contains(numeroCuenta) && matriculaValor.contains(codigoClase)){
-                Toast.makeText(this, "La clase con código "+ codigoClase + " ya se encuentra matriculada para el alumno " +
-                        numeroCuenta,Toast.LENGTH_SHORT)
+            val lista2 = matriculaValor.split("|","=")
+            var numeroARegistrar = spiNumeroCuenta.selectedItem.toString().substring(0,10)
+            if(numeroCuenta.equals(numeroARegistrar) && codigoClase.equals(codigoClaseARegistrar)){
+                txvMensajeError.isVisible = true
+                txvMensajeError.setTextColor(Color.parseColor("#ff0000"))
+                txvMensajeError.setText("La clase con código " + codigoClaseARegistrar +" ya está matriculada.")
                 return true
             }
         }
@@ -87,11 +101,12 @@ class MatriculaActivity : AppCompatActivity() {
                 }
                 datosClases.clear()
                 datos = clase.get(position+1).toString()
+                datosClases.add(datos)
+                var numeroCuenta = spiNumeroCuenta.selectedItem.toString().substring(0,10)
+                codigoClaseARegistrar = listItems.get(position).substring(0,7)
                 if(validarClaseMatriculada()){
                     return
                 }
-                datosClases.add(datos)
-                var numeroCuenta = spiNumeroCuenta.selectedItem.toString().substring(0,10)
                 guardarMatricula(datosClases,numeroCuenta)
                 Snackbar.make(view, "Acción:", Snackbar.LENGTH_LONG)
                     .setAction("Eliminar clase matriculada", eliminarMatricula).show()
@@ -162,6 +177,8 @@ class MatriculaActivity : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                txvMensajeError.isVisible = false
+                txvMensajeError.setText("")
             }
         }
 
