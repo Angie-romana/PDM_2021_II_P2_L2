@@ -10,9 +10,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
+
 import hn.edu.ujcv.pdm_2021_ii_p2_l2.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_matricula.*
+
 import kotlinx.android.synthetic.main.fragment_first.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     var alumno: HashMap<Int,String> = hashMapOf()
     var clase: HashMap<Int,String> = hashMapOf()
     var numero = 1;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         button_first.setOnClickListener { irMatricula() }
+
+
     }
+
+
 
     fun irMatricula(){
         alumno.put(numero++,"2017110190|Carlos Chamorro|carlos.chamorro@ujcv.edu.hn")

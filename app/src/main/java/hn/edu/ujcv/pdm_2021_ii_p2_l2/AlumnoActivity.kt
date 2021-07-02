@@ -32,10 +32,12 @@ class AlumnoActivity : AppCompatActivity() {
         if(txtCuenta.text.toString().length<6)
         {
             txtCuenta.error = "El numero de cuenta no puede tener menos de 6 caracteres"
+            return false
         }
         if(txtCorreo.text.toString().length<15)
         {
             txtCorreo.error =" El correo no puede tener menos de 15 caracteres"
+            return false
         }
         return true
     }
