@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_matricula.*
@@ -28,6 +27,7 @@ class MatriculaActivity : AppCompatActivity() {
         setSpinner()
         llenarClases()
         llenarMatricula()
+        btnNotas.setOnClickListener { irNotas() }
     }
 
     private fun inicializar() {
@@ -51,12 +51,13 @@ class MatriculaActivity : AppCompatActivity() {
         lstMatricula.adapter = adapter
     }
 
-   /* private fun irNotas(){
-        val intent = Intent(this, NotasActivity::class.java)
+    private fun irNotas(){
+        val intent = Intent(this, NotasActivity2::class.java)
         intent.putExtra("alumnos",alumno)
         intent.putExtra("clases",clase)
+        intent.putExtra("matriculas",matricula)
         startActivity(intent)
-    }*/
+    }
 
     private fun guardarMatricula(array:ArrayList<String>,numeroCuenta:String){
         val dato = StringBuilder()
@@ -76,8 +77,6 @@ class MatriculaActivity : AppCompatActivity() {
             val lista = matriculas.toString().split("|","=")
             numeroCuenta = lista[1]
             codigoClase = lista[2]
-            var matriculaValor = matriculas.value
-            val lista2 = matriculaValor.split("|","=")
             var numeroARegistrar = spiNumeroCuenta.selectedItem.toString().substring(0,10)
             if(numeroCuenta.equals(numeroARegistrar) && codigoClase.equals(codigoClaseARegistrar)){
                 txvMensajeError.isVisible = true

@@ -116,7 +116,6 @@ class ClaseActivity : AppCompatActivity() {
     }
     private fun llenarDatos() {
         var intent = intent
-        clase = intent.getSerializableExtra("alumno") as HashMap<Int, String>
         var codigo  : String
         var nombre  : String
         var seccion : String

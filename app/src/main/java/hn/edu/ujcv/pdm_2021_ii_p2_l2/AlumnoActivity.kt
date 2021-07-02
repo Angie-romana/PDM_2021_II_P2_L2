@@ -71,8 +71,7 @@ class AlumnoActivity : AppCompatActivity() {
     }
 
     private fun llenarDatos() {
-       var intent = intent
-       alumno = intent.getSerializableExtra("alumno") as HashMap<Int, String>
+        var intent = intent
         var cuenta : String
         var nombre : String
         var correo : String

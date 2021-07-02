@@ -12,6 +12,8 @@ import android.view.Menu
 import android.view.MenuItem
 
 import hn.edu.ujcv.pdm_2021_ii_p2_l2.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 import kotlinx.android.synthetic.main.fragment_first.*
 
@@ -42,10 +44,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         button_first.setOnClickListener { irMatricula() }
-
+        button.setOnClickListener { irClase() }
+        button3.setOnClickListener { irAlumno() }
 
     }
 
+
+    fun irClase(){
+        val intent = Intent(this,ClaseActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun irAlumno(){
+        val intent = Intent(this,AlumnoActivity::class.java)
+        startActivity(intent)
+    }
 
 
     fun irMatricula(){
