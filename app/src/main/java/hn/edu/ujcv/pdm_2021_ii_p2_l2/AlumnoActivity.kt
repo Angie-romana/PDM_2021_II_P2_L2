@@ -20,7 +20,7 @@ class AlumnoActivity : AppCompatActivity() {
 
     }
     private fun inicializarAlumno() {
-        btnRegistrar.isEnabled = false
+        btnRegistrar.isEnabled = true
 
     }
     fun minLength():Boolean{
@@ -29,7 +29,7 @@ class AlumnoActivity : AppCompatActivity() {
             txtNombre.error = " El nombre no puede tener menos de 3 caracteres"
             return false
         }
-        if(txtCuenta.text.toString().length<6)
+        if(txtCuenta.text.toString().length<10)
         {
             txtCuenta.error = "El numero de cuenta no puede tener menos de 6 caracteres"
             return false
