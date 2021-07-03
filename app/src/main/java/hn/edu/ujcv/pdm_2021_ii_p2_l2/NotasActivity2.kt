@@ -183,7 +183,7 @@ class NotasActivity2 : AppCompatActivity() {
 
 
                     } else {
-                        if(!datos[position].equals("Seleccione un número de cuenta")&& datos2.isEmpty()) {
+                        if(!datos[position].equals("Seleccione un número de cuenta")) {
                             txtNota.setText("")
                             txtNota1.setText("")
                             txtNota2.setText("")
@@ -200,11 +200,7 @@ class NotasActivity2 : AppCompatActivity() {
                 }
                 rellenarSpinnerClases(datos2)
 
-
-
-
             }
-
 
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -262,6 +258,7 @@ class NotasActivity2 : AppCompatActivity() {
                 var llave:String
 
                 valor = prueba2[position]
+                btnGuardar.isEnabled=true
 
                 for (matriculas in matricula) {
                     val lista2 = matriculas.toString().split("|", "=")
@@ -269,6 +266,31 @@ class NotasActivity2 : AppCompatActivity() {
                     codigoMatricula = lista2[2]
 
                     }
+               // if(prueba2[position].equals(valor)){
+                    var nota1:String
+                    var nota2 :String
+                    var nota3:String
+                    var numeroCuenta2: String
+                    for (nota in notas) {
+                        val lista3 = nota.toString().split("|", "=")
+                        numeroCuenta2= lista3[1]
+                        nota1=lista3[2]
+                        nota2=lista3[3]
+                        nota3=lista3[4]
+                        if (prueba2[position].equals(numeroCuenta2)) {
+                            txtNota.setText(nota1)
+                            txtNota1.setText(nota2)
+                            txtNota2.setText(nota3)
+
+                           // return
+                        }
+
+
+                        /*txtNota.setText()
+                    txtNota1.setText()
+                    txtNota2.setText()*/
+                    }
+
                 for (nota in notas){
                     val lista2 = nota.toString().split("|", "=")
 
@@ -318,7 +340,7 @@ class NotasActivity2 : AppCompatActivity() {
         var dato = StringBuilder()
         numero+1
         var valores=valor+"-"+valor2
-        var valores2="$valor2 $valor"
+        var valores2="$valor"
       //  Toast.makeText(this, "$valores", Toast.LENGTH_SHORT).show()
         dato.append(valores2.toString()).append("|")
         dato.append(txtNota.text.toString()).append("|")
@@ -330,9 +352,18 @@ class NotasActivity2 : AppCompatActivity() {
         if (noVacio()== true&&noMasde100()==true ){
             btnEnviarCorreo.isEnabled = true
             Toast.makeText(this, "$notas", Toast.LENGTH_LONG).show()
+            limpiar()
+
         }
 
 
+    }
+
+    fun limpiar(){
+        txtNota.setText("")
+        txtNota1.setText("")
+        txtNota2.setText("")
+        btnGuardar.isEnabled=false
     }
 
     fun noMasde100():Boolean{
