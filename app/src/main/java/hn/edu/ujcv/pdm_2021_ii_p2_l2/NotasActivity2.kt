@@ -3,6 +3,7 @@ package hn.edu.ujcv.pdm_2021_ii_p2_l2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
 import android.provider.Settings
 import android.view.View
 import android.widget.*
@@ -44,25 +45,30 @@ class NotasActivity2 : AppCompatActivity() {
 
     private fun generarCorreo() {
 
-        val userName ="angienicoll@gmail.com"
-        val password =  ":)"
+        val userName ="angieproyecto7@gmail.com"
+        val password =  "BreakTheSilence"
         // FYI: passwords as a command arguments isn't safe
         // They go into your bash/zsh history and are visible when running ps
 
-        val emailFrom = "angienicoll@gmail.com"
-        val emailTo ="angienicoll@gmail.com"
+        val emailFrom = "angieproyecto7@gmail.com"
+        val emailTo ="angienicoll7@gmail.com"
         //val emailCC =
 
         val subject = "SMTP Test"
         val text = "Hello Kotlin Mail"
 
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+
         val props = Properties()
         putIfMissing(props, "mail.smtp.host", "smtp.gmail.com")
-        putIfMissing(props, "mail.smtp.port", "587")
+      //  putIfMissing(props, "mail.smtp.socketFactory.port","465")
+        putIfMissing(props, "mail.smtp.port", "465")
         putIfMissing(props, "mail.smtp.auth", "true")
         putIfMissing(props, "mail.smtp.starttls.enable", "true")
+       // putIfMissing(props, "mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory")
 
-        val session = Session.getDefaultInstance(props, object : javax.mail.Authenticator() {
+        val session = Session.getDefaultInstance(props, object : Authenticator() {
             override fun getPasswordAuthentication(): PasswordAuthentication {
                 return PasswordAuthentication(userName, password)
             }
@@ -77,7 +83,7 @@ class NotasActivity2 : AppCompatActivity() {
             //  mimeMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(emailCC, false))
             mimeMessage.setText(text)
             mimeMessage.subject = subject
-            mimeMessage.sentDate = Date()
+            // mimeMessage.sentDate = Date()
 
             val smtpTransport = session.getTransport("smtp")
             smtpTransport.connect()
@@ -93,12 +99,15 @@ class NotasActivity2 : AppCompatActivity() {
 
 /*        var txtemail: EditText
        var txtMensage: EditText
+
        val button: Button = findViewById(R.id.btnEnviarCorreo)
         val editTextTo: EditText
+
         button.setOnClickListener(View.OnClickListener {
             val to = "angienicoll7@gmail.com"
             val subject = "Test"
             val message = "Hola FIGHTING tu puedes"
+
             val intent = Intent(Intent.ACTION_SEND)
             val addressees = arrayOf(to)
             intent.putExtra(Intent.EXTRA_EMAIL, addressees)
