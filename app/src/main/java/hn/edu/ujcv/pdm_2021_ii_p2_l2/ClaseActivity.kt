@@ -20,6 +20,7 @@ class ClaseActivity : AppCompatActivity() {
         llenarDatos()
         txtHora.setOnClickListener{showTimePicker()}
         btnRegClase.setOnClickListener {guardarRegistro() }
+        btnEnviarC.setOnClickListener { enviarDatosC() }
     }
 
     private fun showTimePicker() {
@@ -70,6 +71,12 @@ class ClaseActivity : AppCompatActivity() {
        }
 
 
+    }
+
+    private fun enviarDatosC() {
+        val intent = Intent(this,MatriculaActivity::class.java)
+        intent.putExtra("clases",clase)
+        startActivity(intent)
     }
     fun minLength():Boolean{
         if(txtNombreC.text.toString().length<3)

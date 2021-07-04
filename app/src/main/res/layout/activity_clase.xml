@@ -34,7 +34,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:maxLength="10"
-        android:text="@string/txtCodigo"
+        android:text="codigo"
         app:layout_constraintBottom_toTopOf="@+id/txtAula"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:maxLength="30"
-        android:text="@string/txtNombreC"
+        android:text="nombre"
         app:layout_constraintStart_toStartOf="@+id/txtCodigo"
         app:layout_constraintTop_toBottomOf="@+id/txtCodigo" />
 
@@ -62,7 +62,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:maxLength="6"
-        android:text="@string/txtAula"
+        android:text="aula"
         app:layout_constraintBottom_toTopOf="@+id/txtEdificio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCodigo" />
@@ -71,8 +71,8 @@
         android:id="@+id/btnRegClase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="95dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="124dp"
         android:background="#0E0909"
         android:text="@string/btnRegClase"
         app:layout_constraintEnd_toEndOf="@+id/txvTitulo2"
@@ -86,6 +86,7 @@
         android:layout_marginBottom="464dp"
         android:ems="10"
         android:inputType="time"
+        android:text="hora"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/txtNombreC" />
 
@@ -98,7 +99,7 @@
         android:layout_marginBottom="21dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Edificio"
+        android:text="edificio"
         app:layout_constraintBottom_toTopOf="@+id/txtSeccion"
         app:layout_constraintEnd_toEndOf="@+id/txtSeccion"
         app:layout_constraintStart_toStartOf="@+id/txtSeccion"
@@ -110,11 +111,11 @@
         android:layout_height="0dp"
         android:layout_marginEnd="29dp"
         android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:maxLength="1"
-        android:inputType="textPersonName"
-        android:text="Seccion"
         android:digits="abc"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:maxLength="1"
+        android:text="seccion"
         app:layout_constraintBottom_toTopOf="@+id/txtPiso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEdificio" />
@@ -128,12 +129,24 @@
         android:layout_marginBottom="133dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Piso"
+        android:text="piso"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/txtSeccion"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtSeccion"
         app:layout_constraintTop_toBottomOf="@+id/txtSeccion" />
+
+    <Button
+        android:id="@+id/btnEnviarC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="17dp"
+        android:text="Enviar"
+        app:layout_constraintBottom_toTopOf="@+id/txtCodigo"
+        app:layout_constraintEnd_toEndOf="@+id/txtCodigo"
+        app:layout_constraintStart_toEndOf="@+id/btnRegClase" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

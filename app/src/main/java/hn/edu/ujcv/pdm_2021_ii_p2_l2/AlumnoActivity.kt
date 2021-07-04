@@ -22,7 +22,7 @@ class AlumnoActivity : AppCompatActivity() {
     }
 
     private fun enviarDatos() {
-        val intent = Intent(this,MatriculaActivity::class.java)
+        val intent = Intent(this,ClaseActivity::class.java)
         intent.putExtra("alumnos",alumno)
         startActivity(intent)
     }
