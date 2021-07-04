@@ -3,22 +3,38 @@ package hn.edu.ujcv.pdm_2021_ii_p2_l2
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.StrictMode
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_matricula.*
+import java.lang.Exception
+import java.util.*
+import javax.mail.*
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeMessage
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class MatriculaActivity : AppCompatActivity() {
     var alumno: HashMap<Int,String> = hashMapOf()
     var clase: HashMap<Int,String> = hashMapOf()
     var matricula: HashMap<Int,String> = hashMapOf()
+    var numeroCuenta = " "
     var codigoClaseARegistrar = " "
+    var correo:String = ""
+    var contraseña:String = ""
+    var session:Session? = null
+    var contenidoMatricula =""
+    var claseMatriculada = " "
+    var correoAlumno =""
 
     var listItems = ArrayList<String>()
     var adapter: ArrayAdapter<String>? = null
     var numero = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +44,90 @@ class MatriculaActivity : AppCompatActivity() {
         llenarClases()
         llenarMatricula()
         btnNotas.setOnClickListener { irNotas() }
+        btnEnviarMatricula.setOnClickListener { enviarCorreo() }
     }
+//    clase.put(numero++,"FIL1015|Filosofia|A|10:00 - 10:50|Academico 1-102")
+    private fun construirCorreo():String{
+        var mensaje = "Las clases matriculadas por el alumno: " + numeroCuenta + " son: <br><br>"
+        for(matriculas in matricula){
+            val lista = matriculas.toString().split("|","=")
+            var numCuenta = lista[1]
+            var claseMatriculada = lista[2].substring(0,7)
+            if(numCuenta.equals(numeroCuenta)){
+                for(clases in clase){
+                   val lista2 = clases.toString().split("|","=")
+                   val codigoClase = lista2[1]
+                   val nombreClase = lista2[2]
+                   val seccionClase = lista2[3]
+                   val horarioClase = lista2[4]
+                   val edificioClase = lista2[5]
+                   val pisoClase = lista2[6]
+                   val aulaClase = lista2[7]
+                   if(codigoClase.equals(claseMatriculada)){
+                       mensaje += "Código de clase: " + codigoClase + "<br> Nombre de la clase: " + nombreClase+
+                               "<br>Sección de la clase: " + seccionClase + "<br>Horario de la clase: " + horarioClase+
+                               "<br>Edificio de la clase: " + edificioClase + "<br>Piso de la clase: " + pisoClase+
+                               "<br>Aula de la clase: "+aulaClase +"<br><br>"
+                   }
+                }
+            }
+        }
+        return mensaje
+    }
+//     alumno.put(numero++,"2017110190|Carlos Chamorro|carlos.chamorro@ujcv.edu.hn")
+    private fun capturarCorreo(){
+        for(alumnos in alumno){
+            val lista = alumnos.toString().split("|","=")
+            var numeroCuentaAlumno = lista[1]
+            var emailAlumno = lista[3]
+            if(numeroCuentaAlumno.equals(numeroCuenta)){
+                correoAlumno = emailAlumno
+                return
+            }
+        }
+    }
+
+    private fun enviarCorreo(){
+        val policy: StrictMode.ThreadPolicy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+        val properties = Properties()
+        properties.put("mail.smtp.host","smtp.gmail.com")
+        properties.put("mail.smtp.socketFactory.port","465")
+        properties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory")
+        properties.put("mail.smtp.auth","true")
+        properties.put("mail.smtp.port","465")
+        try {
+            session = Session.getDefaultInstance(properties, object : Authenticator() {
+                override fun getPasswordAuthentication(): PasswordAuthentication {
+                    return PasswordAuthentication(correo,contraseña)
+                }
+            })
+            }catch (e:Exception){
+
+            }
+        if(session!=null){
+            var mimessage = MimeMessage(session)
+            var message: Message
+            val email = InternetAddress(correo)
+            message = mimessage
+            message.setFrom(email)
+            message.setSubject("Matrícula del alumno: " + numeroCuenta)
+            capturarCorreo()
+            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(correoAlumno))
+            val mensaje = construirCorreo()
+            message.setContent(mensaje,"text/html; charset=utf-8")
+            Transport.send(message)
+        }
+    }
+
 
     private fun inicializar() {
         var intent = intent
         alumno = intent.getSerializableExtra("alumnos") as HashMap<Int, String>
         clase = intent.getSerializableExtra("clases") as HashMap<Int, String>
         txvMensajeError.isVisible = false
+        correo = "proyectodispositivosmoviles1@gmail.com"
+        contraseña = "Proyecto1DispMoviles"
     }
 
     var eliminarMatricula: View.OnClickListener = View.OnClickListener { view ->
@@ -56,6 +149,7 @@ class MatriculaActivity : AppCompatActivity() {
         intent.putExtra("alumnos",alumno)
         intent.putExtra("clases",clase)
         intent.putExtra("matriculas",matricula)
+
         startActivity(intent)
     }
 
@@ -98,11 +192,10 @@ class MatriculaActivity : AppCompatActivity() {
                     adapter?.notifyDataSetChanged()
                     return
                 }
-                datosClases.clear()
-                datos = clase.get(position+1).toString()
-                datosClases.add(datos)
-                var numeroCuenta = spiNumeroCuenta.selectedItem.toString().substring(0,10)
                 codigoClaseARegistrar = listItems.get(position).substring(0,7)
+                numeroCuenta = spiNumeroCuenta.selectedItem.toString().substring(0,10)
+                datosClases.clear()
+                datosClases.add(codigoClaseARegistrar)
                 if(validarClaseMatriculada()){
                     return
                 }
@@ -142,7 +235,7 @@ class MatriculaActivity : AppCompatActivity() {
         return datos
     }
 
-//    clase.put(numero++,"FI1015|Filosofia|A|10:00 - 10:50|Academico 1-102")
+//    clase.put(numero++,"IDI1015|Ingles I|A|07:00 - 07:50|Academico|2|102")
     private fun addListItems(){
         listItems.clear()
         if(spiNumeroCuenta.selectedItem=="Seleccione un número de cuenta"){
@@ -157,7 +250,9 @@ class MatriculaActivity : AppCompatActivity() {
             var seccion = lista[3]
             var horario = lista[4]
             var edificio = lista[5]
-            var dato = codigoClase + "," + nombreClase + "," + seccion + "," + horario + "," + edificio
+            var piso = lista[6]
+            var aula = lista[7]
+            var dato = codigoClase + "," + nombreClase + "," + seccion + "," + horario + "," + edificio +","+piso +","+aula
             listItems.add(dato)
             adapter?.notifyDataSetChanged()
         }

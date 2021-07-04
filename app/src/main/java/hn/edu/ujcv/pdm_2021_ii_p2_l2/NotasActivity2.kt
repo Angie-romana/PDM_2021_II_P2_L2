@@ -7,6 +7,7 @@ import android.os.StrictMode
 import android.provider.Settings
 import android.view.View
 import android.widget.*
+import kotlinx.android.synthetic.main.activity_matricula.*
 import kotlinx.android.synthetic.main.activity_notas2.*
 import java.util.*
 import javax.mail.internet.InternetAddress
@@ -28,6 +29,10 @@ class NotasActivity2 : AppCompatActivity() {
     var valor =""
     var valor2 =""
     var numero = ""
+    var numeroCuentaAlumno = ""
+    var correoAlumno = ""
+    var correo:String = ""
+    var contraseña:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,81 +47,95 @@ class NotasActivity2 : AppCompatActivity() {
         // llenarlist()
 
     }
+    private fun capturarCorreo(){
+        for(alumnos in alumno){
+            val lista = alumnos.toString().split("|","=")
+            var numeroCuentaAlumno = lista[1]
+            var emailAlumno = lista[3]
+            if(numeroCuentaAlumno.equals(numeroCuentaAlumno)){
+                correoAlumno = emailAlumno
+                return
+            }
+        }
+    }
+
+    private fun construirCorreo():String{
+        var mensaje = "Las notas de las clases matriculadas por el alumno: " + numeroCuentaAlumno + " son: <br><br>"
+        var notasArray = ArrayList<String>()
+        var clasesArray = ArrayList<String>()
+        for(matriculas in matricula){
+            val lista = matriculas.toString().split("|","=")
+            var numCuenta = lista[1]
+            var claseMatriculada = lista[2]
+
+            if(numCuenta.equals(numeroCuentaAlumno)){
+                for(clases in clase){
+                    val lista2 = clases.toString().split("|","=")
+                    val codigoClase = lista2[1]
+                    val nombreClase = lista2[2]
+                    if(claseMatriculada.equals(codigoClase)){
+                        clasesArray.add(nombreClase+"|"+numeroCuentaAlumno)
+                    }
+                    if(codigoClase.equals(claseMatriculada)) {
+                        for(valor in notas){
+                            val lista3 = valor.toString().split("=","|")
+                            var nota1 = lista3[2]
+                            var nota2 = lista3[3]
+                            var nota3 = lista3[4]
+                            notasArray.add(nota1+"|"+nota2+"|"+nota3)
+                        }
+                    }
+                }
+            }
+        }
+        for(i in 0..(notas.size-1)){
+            val lista5 = clasesArray.get(i).split("|")
+            var clase = lista5[0]
+            var numCuenta = lista5[1]
+            if(numCuenta.equals(numeroCuentaAlumno)){
+                val lista4 = notasArray.get(i).split("|")
+                var nota1Final = lista4[0]
+                var nota2Final = lista4[1]
+                var nota3Final = lista4[2]
+
+                mensaje += "Nombre de la clase: " + clase +
+                        "<br>Nota1: " + nota1Final + "<br>Nota2: " + nota2Final+
+                        "<br>Nota3: " + nota3Final + "<br><br>"
+            }
+        }
+        return mensaje
+    }
 
     private fun generarCorreo() {
-
-        val userName ="angieproyecto7@gmail.com"
-        val password =  "BreakTheSilence"
-        // FYI: passwords as a command arguments isn't safe
-        // They go into your bash/zsh history and are visible when running ps
-
-        val emailFrom = "angieproyecto7@gmail.com"
-        val emailTo ="angienicoll7@gmail.com"
-        //val emailCC =
-
-        val subject = "SMTP Test"
-        val text = "Hello Kotlin Mail"
-
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        val policy: StrictMode.ThreadPolicy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-
-        val props = Properties()
-        putIfMissing(props, "mail.smtp.host", "smtp.gmail.com")
-      //  putIfMissing(props, "mail.smtp.socketFactory.port","465")
-        putIfMissing(props, "mail.smtp.port", "465")
-        putIfMissing(props, "mail.smtp.auth", "true")
-        putIfMissing(props, "mail.smtp.starttls.enable", "true")
-       // putIfMissing(props, "mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory")
-
-        val session = Session.getDefaultInstance(props, object : Authenticator() {
+        val properties = Properties()
+        properties.put("mail.smtp.host","smtp.gmail.com")
+        properties.put("mail.smtp.socketFactory.port","465")
+        properties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory")
+        properties.put("mail.smtp.auth","true")
+        properties.put("mail.smtp.port","465")
+        val session = Session.getDefaultInstance(properties, object : Authenticator() {
             override fun getPasswordAuthentication(): PasswordAuthentication {
-                return PasswordAuthentication(userName, password)
+                return PasswordAuthentication(correo, contraseña)
             }
         })
-
-        session.debug = true
-
         try {
-            val mimeMessage = MimeMessage(session)
-            mimeMessage.setFrom(InternetAddress(emailFrom))
-            mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailTo, false))
-            //  mimeMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(emailCC, false))
-            mimeMessage.setText(text)
-            mimeMessage.subject = subject
-            // mimeMessage.sentDate = Date()
-
-            val smtpTransport = session.getTransport("smtp")
-            smtpTransport.connect()
-            smtpTransport.sendMessage(mimeMessage, mimeMessage.allRecipients)
-            smtpTransport.close()
+            var mimessage = MimeMessage(session)
+            var message: Message
+            val email = InternetAddress(correo)
+            message = mimessage
+            message.setFrom(email)
+            numeroCuentaAlumno = spnNumeroCuenta.selectedItem.toString().substring(0,10)
+            message.setSubject("Notas del alumno: " + numeroCuentaAlumno)
+            capturarCorreo()
+            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(correoAlumno))
+            val mensaje = construirCorreo()
+            message.setContent(mensaje,"text/html; charset=utf-8")
+            Transport.send(message)
         } catch (messagingException: MessagingException) {
             messagingException.printStackTrace()
         }
-
-
-
-
-
-/*        var txtemail: EditText
-       var txtMensage: EditText
-
-       val button: Button = findViewById(R.id.btnEnviarCorreo)
-        val editTextTo: EditText
-
-        button.setOnClickListener(View.OnClickListener {
-            val to = "angienicoll7@gmail.com"
-            val subject = "Test"
-            val message = "Hola FIGHTING tu puedes"
-
-            val intent = Intent(Intent.ACTION_SEND)
-            val addressees = arrayOf(to)
-            intent.putExtra(Intent.EXTRA_EMAIL, addressees)
-            intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-            intent.putExtra(Intent.EXTRA_TEXT, notas.get("Geometria y Tri.-2017130315"))
-            intent.setType("message/rfc822")
-            startActivity(Intent.createChooser(intent, "Send Email using:"));
-        })*/
-
     }
     private fun putIfMissing(props: Properties, key: String, value: String) {
         if (!props.containsKey(key)) {
@@ -140,6 +159,9 @@ class NotasActivity2 : AppCompatActivity() {
         txtNota.isEnabled=false
         txtNota1.isEnabled=false
         txtNota2.isEnabled=false
+
+        correo = "proyectodispositivosmoviles1@gmail.com"
+        contraseña = "Proyecto1DispMoviles"
 
     }
 

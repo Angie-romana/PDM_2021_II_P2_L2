@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_clase.*
 import java.util.*
 
 class ClaseActivity : AppCompatActivity() {
+    var alumno: HashMap<Int,String> = hashMapOf()
     var clase: HashMap<Int,String> = hashMapOf()
     var numero = 1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +48,8 @@ class ClaseActivity : AppCompatActivity() {
 
 
    private fun inicializar() {
-        btnRegClase.isEnabled = true
+       alumno = intent.getSerializableExtra("alumnos") as HashMap<Int, String>
+       btnRegClase.isEnabled = true
     }
     private fun guardarRegistro() {
         val dato = StringBuilder()
@@ -76,17 +78,19 @@ class ClaseActivity : AppCompatActivity() {
     private fun enviarDatosC() {
         val intent = Intent(this,MatriculaActivity::class.java)
         intent.putExtra("clases",clase)
+        intent.putExtra("alumnos",alumno)
         startActivity(intent)
     }
+
     fun minLength():Boolean{
         if(txtNombreC.text.toString().length<3)
         {
             txtNombreC.error = " El nombre no puede tener menos de 3 caracteres"
             return false
         }
-        if(txtCodigo.text.toString().length<10)
+        if(txtCodigo.text.toString().length<6)
         {
-            txtCodigo.error = "El codigo no puede tener menos de 10 caracteres"
+            txtCodigo.error = "El codigo no puede tener menos de 6 caracteres"
             return false
         }
         if(txtSeccion.text.toString().length<1)
@@ -94,7 +98,7 @@ class ClaseActivity : AppCompatActivity() {
             txtSeccion.error =" La seccion no puede estar vacio"
             return false
         }
-        if(txtHora.text.toString().length<10)
+        if(txtHora.text.toString().length<5)
         {
             txtHora.error =" La hora no puede estar vacio"
             return false

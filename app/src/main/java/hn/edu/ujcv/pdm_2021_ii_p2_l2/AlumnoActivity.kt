@@ -28,7 +28,7 @@ class AlumnoActivity : AppCompatActivity() {
     }
 
     private fun inicializarAlumno() {
-        btnRegistrar.isEnabled = false
+        btnRegistrar.isEnabled = true
 
     }
     fun minLength():Boolean{

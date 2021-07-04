@@ -13,93 +13,69 @@
         android:id="@+id/txvTitulo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="39dp"
         android:text="@string/txvRegistroClases"
         android:textAllCaps="true"
         android:textColor="#0C0C0C"
         android:textColorHint="#090808"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtCodigo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="161dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="148dp"
-        android:digits="1234567890"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:maxLength="10"
-        android:text="codigo"
-        app:layout_constraintBottom_toTopOf="@+id/txtAula"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txtCodigo"
+        app:layout_constraintEnd_toEndOf="@+id/txtCodigo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtNombreC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="76dp"
-        android:digits="abcdefghijklmnñopqrstuvxwyz"
+        android:layout_marginBottom="21dp"
+        android:digits="abcdefghijklmnñopqrstuvxwyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚáéíóúäëïöüÄËÏÖÜ"
         android:ems="10"
+        android:hint="nombre"
         android:inputType="textPersonName"
         android:maxLength="30"
-        android:text="nombre"
+        app:layout_constraintBottom_toTopOf="@+id/txtHora"
         app:layout_constraintStart_toStartOf="@+id/txtCodigo"
         app:layout_constraintTop_toBottomOf="@+id/txtCodigo" />
-
-    <EditText
-        android:id="@+id/txtAula"
-        android:layout_width="96dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:maxLength="6"
-        android:text="aula"
-        app:layout_constraintBottom_toTopOf="@+id/txtEdificio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodigo" />
-
-    <Button
-        android:id="@+id/btnRegClase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="124dp"
-        android:background="#0E0909"
-        android:text="@string/btnRegClase"
-        app:layout_constraintEnd_toEndOf="@+id/txvTitulo2"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="464dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
+        android:hint="hora"
         android:inputType="time"
-        android:text="hora"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txtNombreC" />
+        app:layout_constraintBottom_toTopOf="@+id/txtAula"
+        app:layout_constraintStart_toStartOf="@+id/txtAula"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreC" />
+
+    <EditText
+        android:id="@+id/txtAula"
+        android:layout_width="211dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:hint="aula"
+        android:inputType="number"
+        android:maxLength="6"
+        app:layout_constraintBottom_toTopOf="@+id/txtEdificio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHora" />
 
     <EditText
         android:id="@+id/txtEdificio"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="19dp"
         android:ems="10"
+        android:hint="edificio"
         android:inputType="textPersonName"
-        android:text="edificio"
         app:layout_constraintBottom_toTopOf="@+id/txtSeccion"
         app:layout_constraintEnd_toEndOf="@+id/txtSeccion"
         app:layout_constraintStart_toStartOf="@+id/txtSeccion"
@@ -107,46 +83,72 @@
 
     <EditText
         android:id="@+id/txtSeccion"
-        android:layout_width="160dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="19dp"
-        android:digits="abc"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:maxLength="1"
-        android:text="seccion"
-        app:layout_constraintBottom_toTopOf="@+id/txtPiso"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEdificio" />
-
-    <EditText
-        android:id="@+id/txtPiso"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="133dp"
+        android:layout_marginBottom="14dp"
+        android:digits="abc"
         android:ems="10"
+        android:hint="seccion"
         android:inputType="textPersonName"
-        android:text="piso"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txtSeccion"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txtSeccion"
-        app:layout_constraintTop_toBottomOf="@+id/txtSeccion" />
+        android:maxLength="1"
+        app:layout_constraintBottom_toTopOf="@+id/txtPiso"
+        app:layout_constraintEnd_toEndOf="@+id/txtPiso"
+        app:layout_constraintStart_toStartOf="@+id/txtPiso"
+        app:layout_constraintTop_toBottomOf="@+id/txtEdificio" />
 
     <Button
         android:id="@+id/btnEnviarC"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="77dp"
+        android:text="Enviar"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnRegClase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnRegClase" />
+
+    <Button
+        android:id="@+id/btnRegClase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginBottom="17dp"
-        android:text="Enviar"
-        app:layout_constraintBottom_toTopOf="@+id/txtCodigo"
-        app:layout_constraintEnd_toEndOf="@+id/txtCodigo"
-        app:layout_constraintStart_toEndOf="@+id/btnRegClase" />
+        android:layout_marginStart="78dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="96dp"
+        android:background="#0E0909"
+        android:text="@string/btnRegClase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEnviarC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPiso" />
+
+    <EditText
+        android:id="@+id/txtPiso"
+        android:layout_width="216dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="38dp"
+        android:ems="10"
+        android:hint="piso"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegClase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSeccion" />
+
+    <EditText
+        android:id="@+id/txtCodigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="codigo"
+        android:inputType="textPersonName"
+        android:maxLength="10"
+        app:layout_constraintBottom_toTopOf="@+id/txtNombreC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvTitulo2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

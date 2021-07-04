@@ -52,13 +52,13 @@
         android:layout_marginEnd="24dp"
         android:text="Matrícular"
         app:layout_constraintBottom_toTopOf="@+id/btnNotas"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/btnEnviarMatricula"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvMensajeError" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnEnviarMatricula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviar Matrícula"
@@ -84,7 +84,7 @@
         android:layout_marginBottom="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/btnMatricular"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/btnEnviarMatricula"
         app:layout_constraintTop_toBottomOf="@+id/lstMatricula" />
 
     <Button
@@ -96,7 +96,7 @@
         android:layout_marginBottom="16dp"
         android:text="Notas"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/btnEnviarMatricula"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMatricular" />
 
