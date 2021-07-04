@@ -23,7 +23,7 @@ class NotasActivity2 : AppCompatActivity() {
     var clase: HashMap<Int, String> = hashMapOf()
     var matricula: HashMap<Int, String> = hashMapOf()
     var notas:HashMap<String, String> = hashMapOf()
-     var datosGlobal = ArrayList<String>()
+    var datosGlobal = ArrayList<String>()
     var valor =""
     var valor2 =""
     var numero = ""
@@ -45,7 +45,7 @@ class NotasActivity2 : AppCompatActivity() {
     private fun generarCorreo() {
 
         val userName ="angienicoll@gmail.com"
-        val password =  "IbelieveinyourGalaxy"+"$"+"Bangtan*ARMY7"
+        val password =  ":)"
         // FYI: passwords as a command arguments isn't safe
         // They go into your bash/zsh history and are visible when running ps
 
@@ -74,7 +74,7 @@ class NotasActivity2 : AppCompatActivity() {
             val mimeMessage = MimeMessage(session)
             mimeMessage.setFrom(InternetAddress(emailFrom))
             mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailTo, false))
-          //  mimeMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(emailCC, false))
+            //  mimeMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(emailCC, false))
             mimeMessage.setText(text)
             mimeMessage.subject = subject
             mimeMessage.sentDate = Date()
@@ -93,15 +93,12 @@ class NotasActivity2 : AppCompatActivity() {
 
 /*        var txtemail: EditText
        var txtMensage: EditText
-
        val button: Button = findViewById(R.id.btnEnviarCorreo)
         val editTextTo: EditText
-
         button.setOnClickListener(View.OnClickListener {
             val to = "angienicoll7@gmail.com"
             val subject = "Test"
             val message = "Hola FIGHTING tu puedes"
-
             val intent = Intent(Intent.ACTION_SEND)
             val addressees = arrayOf(to)
             intent.putExtra(Intent.EXTRA_EMAIL, addressees)
@@ -167,7 +164,7 @@ class NotasActivity2 : AppCompatActivity() {
                 var numeroCuenta: String
                 var codigoMatricula: String
                 var asignatura: String
-               // datos2.add(default)
+                // datos2.add(default)
                 valor2=datos[position]
 
                 for (matriculas in matricula) {
@@ -176,7 +173,7 @@ class NotasActivity2 : AppCompatActivity() {
                     codigoMatricula = lista2[2]
 
                     if (datos[position].contains(numeroCuenta)) {
-                       asignatura = añadirNombreAsignatura(codigoMatricula)
+                        asignatura = añadirNombreAsignatura(codigoMatricula)
                         var dato2 = "$codigoMatricula-$asignatura"
                         var datos2Global =  numeroCuenta+codigoMatricula
                         datos2.add(dato2)
@@ -194,7 +191,7 @@ class NotasActivity2 : AppCompatActivity() {
 
                         }
                         //var dato2 = "No Tiene Clases matriculadas"
-                       // datos2.add(dato2)
+                        // datos2.add(dato2)
 
                     }
                 }
@@ -204,16 +201,15 @@ class NotasActivity2 : AppCompatActivity() {
 
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-        /*        var nota1= "0.0"
-                var nota2 ="0.0"
-                var nota3= "0.0"
-                txtNota.setText(nota1)
-                txtNota1.setText(nota2)
-                txtNota2.setText(nota3)
-
-                txtNota.isEnabled=false
-                txtNota1.isEnabled=false
-                txtNota2.isEnabled=false*/
+                /*        var nota1= "0.0"
+                        var nota2 ="0.0"
+                        var nota3= "0.0"
+                        txtNota.setText(nota1)
+                        txtNota1.setText(nota2)
+                        txtNota2.setText(nota3)
+                        txtNota.isEnabled=false
+                        txtNota1.isEnabled=false
+                        txtNota2.isEnabled=false*/
             }
         }
 
@@ -229,19 +225,17 @@ class NotasActivity2 : AppCompatActivity() {
         var adaptador2 = ArrayAdapter(this, android.R.layout.simple_list_item_1, prueba2)
         spinner2.adapter = adaptador2
 
-  /*      spinner2.onItemClickListener=object :
-        AdapterView.OnItemClickListener{
-            override fun onItemClick(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-
-                valor= prueba2[position]
-            }
-
-        }*/
+        /*      spinner2.onItemClickListener=object :
+              AdapterView.OnItemClickListener{
+                  override fun onItemClick(
+                      parent: AdapterView<*>?,
+                      view: View?,
+                      position: Int,
+                      id: Long
+                  ) {
+                      valor= prueba2[position]
+                  }
+              }*/
 
         spinner2.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener{
@@ -265,31 +259,31 @@ class NotasActivity2 : AppCompatActivity() {
                     numeroCuenta = lista2[1]
                     codigoMatricula = lista2[2]
 
+                }
+                // if(prueba2[position].equals(valor)){
+                var nota1:String
+                var nota2 :String
+                var nota3:String
+                var numeroCuenta2: String
+                for (nota in notas) {
+                    val lista3 = nota.toString().split("|", "=")
+                    numeroCuenta2= lista3[1]
+                    nota1=lista3[2]
+                    nota2=lista3[3]
+                    nota3=lista3[4]
+                    if (prueba2[position].equals(numeroCuenta2)) {
+                        txtNota.setText(nota1)
+                        txtNota1.setText(nota2)
+                        txtNota2.setText(nota3)
+
+                        // return
                     }
-               // if(prueba2[position].equals(valor)){
-                    var nota1:String
-                    var nota2 :String
-                    var nota3:String
-                    var numeroCuenta2: String
-                    for (nota in notas) {
-                        val lista3 = nota.toString().split("|", "=")
-                        numeroCuenta2= lista3[1]
-                        nota1=lista3[2]
-                        nota2=lista3[3]
-                        nota3=lista3[4]
-                        if (prueba2[position].equals(numeroCuenta2)) {
-                            txtNota.setText(nota1)
-                            txtNota1.setText(nota2)
-                            txtNota2.setText(nota3)
-
-                           // return
-                        }
 
 
-                        /*txtNota.setText()
-                    txtNota1.setText()
-                    txtNota2.setText()*/
-                    }
+                    /*txtNota.setText()
+                txtNota1.setText()
+                txtNota2.setText()*/
+                }
 
                 for (nota in notas){
                     val lista2 = nota.toString().split("|", "=")
@@ -330,9 +324,9 @@ class NotasActivity2 : AppCompatActivity() {
         var nota2=0.0
         var nota3=0.0
         var promedio=0.0
-           /* nota1=txtNota.text.toString().toDouble()
-            nota2=txtNota1.text.toString().toDouble()
-            nota3=txtNota2.text.toString().toDouble()*/
+        /* nota1=txtNota.text.toString().toDouble()
+         nota2=txtNota1.text.toString().toDouble()
+         nota3=txtNota2.text.toString().toDouble()*/
 
         //promedio=(nota1+nota2+nota3)/3
 
@@ -341,12 +335,12 @@ class NotasActivity2 : AppCompatActivity() {
         numero+1
         var valores=valor+"-"+valor2
         var valores2="$valor"
-      //  Toast.makeText(this, "$valores", Toast.LENGTH_SHORT).show()
+        //  Toast.makeText(this, "$valores", Toast.LENGTH_SHORT).show()
         dato.append(valores2.toString()).append("|")
         dato.append(txtNota.text.toString()).append("|")
         dato.append(txtNota1.text.toString()).append("|")
         dato.append(txtNota2.text.toString()).append("|")
-       // dato.append(promedio.toString()).append("|")
+        // dato.append(promedio.toString()).append("|")
         notas.put(valores, dato.toString())
 
         if (noVacio()== true&&noMasde100()==true ){
@@ -416,7 +410,7 @@ class NotasActivity2 : AppCompatActivity() {
                 return dato
 
             }
-         //   var dato = "$codigoClase - $nombreAsignatura"
+            //   var dato = "$codigoClase - $nombreAsignatura"
 
         }
 
@@ -435,36 +429,25 @@ class NotasActivity2 : AppCompatActivity() {
 
 
 
-   /* fun llenarlist(){
+/* fun llenarlist(){
+     var datos =ArrayList<String>()
+     var numeroCuenta:String
+     var codigoMatricula:String
+     var nombre : String
+     var Asignatura:String
+     for (matriculas in matricula){
+         val lista = matriculas.toString().split("|","=")
+         numeroCuenta= lista[1]
+         codigoMatricula= lista[2]
+         var dato = "$numeroCuenta - $codigoMatricula"
+         datos.add(dato)
+     }*/
 
-        var datos =ArrayList<String>()
-
-        var numeroCuenta:String
-        var codigoMatricula:String
-        var nombre : String
-
-        var Asignatura:String
-
-
-
-        for (matriculas in matricula){
-            val lista = matriculas.toString().split("|","=")
-            numeroCuenta= lista[1]
-            codigoMatricula= lista[2]
-            var dato = "$numeroCuenta - $codigoMatricula"
-            datos.add(dato)
-
-        }*/
-
-       // val personas = mutableListOf("Angie","Carlos","Jungkook")
+// val personas = mutableListOf("Angie","Carlos","Jungkook")
 
 
-    /*    val arrayAdapter:ArrayAdapter<String>
-        val lvDatos = findViewById<ListView>(R.id.lvNotas2)
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,datos)
-        lvDatos.adapter= arrayAdapter*/
-
-
-
-
+/*    val arrayAdapter:ArrayAdapter<String>
+    val lvDatos = findViewById<ListView>(R.id.lvNotas2)
+    arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,datos)
+    lvDatos.adapter= arrayAdapter*/
 
