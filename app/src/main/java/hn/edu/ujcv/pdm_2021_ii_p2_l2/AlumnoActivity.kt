@@ -16,11 +16,19 @@ class AlumnoActivity : AppCompatActivity() {
         inicializarAlumno()
       btnRegistrar.setOnClickListener { guardarRegistro() }
         llenarDatos()
+        btnEnviar.setOnClickListener { enviarDatos() }
 
 
     }
+
+    private fun enviarDatos() {
+        val intent = Intent(this,MatriculaActivity::class.java)
+        intent.putExtra("alumnos",alumno)
+        startActivity(intent)
+    }
+
     private fun inicializarAlumno() {
-        btnRegistrar.isEnabled = true
+        btnRegistrar.isEnabled = false
 
     }
     fun minLength():Boolean{
@@ -53,21 +61,31 @@ class AlumnoActivity : AppCompatActivity() {
         minLength()
         datosVacios()
 
+        if(datosVacios()== true && minLength() == true)
+        {
+
+            Toast.makeText(this, "Se ha enviado exitosamente", Toast.LENGTH_SHORT).show()
+        }
+
     }
-    fun datosVacios()
+    fun datosVacios():Boolean
     {
         if (txtNombre.text.toString().isEmpty())
         {
-            Toast.makeText(this,"Debe ingresar un nombre", Toast.LENGTH_SHORT).show()
+            txtNombre.error = "Debe ingresar un nombre"
+            return false
         }
         if(txtCuenta.text.toString().isEmpty())
         {
-            Toast.makeText(this,"Debe ingresar un numero de cuenta", Toast.LENGTH_SHORT).show()
+            txtCuenta.error = "Debe ingresar un numero de cuenta"
+            return false
         }
         if(txtCorreo.text.toString().isEmpty())
         {
-            Toast.makeText(this,"Debe ingresar un correo", Toast.LENGTH_SHORT).show()
+            txtCorreo.error = "Debe ingresar un correo"
+            return false
         }
+        return true
     }
 
     private fun llenarDatos() {
