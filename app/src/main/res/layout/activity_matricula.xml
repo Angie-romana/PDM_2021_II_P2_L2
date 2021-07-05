@@ -7,25 +7,12 @@
     android:background="@drawable/fondo2"
     tools:context=".MatriculaActivity">
 
-    <Spinner
-        android:id="@+id/spiNumeroCuenta"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="4dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toTopOf="@+id/lstMatricula"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txvIconoMatricula"
-        app:layout_constraintTop_toTopOf="@+id/txvIconoMatricula" />
-
     <TextView
         android:id="@+id/txvTituloMatricula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="7dp"
         android:text="@string/txvmatricula"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -33,41 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/txvIconoMatricula"
-        android:layout_width="53dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="5dp"
-        android:contentDescription="@string/icononumerocuenta"
-        app:layout_constraintBottom_toTopOf="@+id/lstMatricula"
-        app:layout_constraintEnd_toStartOf="@+id/spiNumeroCuenta"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvTituloMatricula"
-        app:srcCompat="@drawable/numerocuenta" />
-
-    <Button
-        android:id="@+id/btnEnviarMatricula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="76dp"
-        android:text="@string/btnenviarmatricula"
-        app:layout_constraintBottom_toTopOf="@+id/btnNotas"
-        app:layout_constraintEnd_toStartOf="@+id/txvMensajeError"
-        app:layout_constraintTop_toBottomOf="@+id/txvMensajeError" />
-
-    <Button
-        android:id="@+id/btnNotas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/btnnotas"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEnviarMatricula" />
 
     <ListView
         android:id="@+id/lstMatricula"
@@ -79,12 +31,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvIconoMatricula" />
 
+    <Button
+        android:id="@+id/btnEnviarMatricula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="104dp"
+        android:text="@string/btnenviarmatricula"
+        app:layout_constraintBottom_toTopOf="@+id/btnNotas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvMensajeError" />
+
+    <Button
+        android:id="@+id/btnNotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:text="@string/btnnotas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarMatricula" />
+
+    <Spinner
+        android:id="@+id/spiNumeroCuenta"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="2dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/lstMatricula"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txvIconoMatricula"
+        app:layout_constraintTop_toTopOf="@+id/txvIconoMatricula" />
+
+    <ImageView
+        android:id="@+id/txvIconoMatricula"
+        android:layout_width="46dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="3dp"
+        android:contentDescription="@string/icononumerocuenta"
+        app:layout_constraintBottom_toTopOf="@+id/lstMatricula"
+        app:layout_constraintEnd_toStartOf="@+id/spiNumeroCuenta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvTituloMatricula"
+        app:srcCompat="@drawable/numerocuenta" />
+
     <TextView
         android:id="@+id/txvMensajeError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="19dp"
         app:layout_constraintBottom_toTopOf="@+id/btnEnviarMatricula"
         app:layout_constraintEnd_toEndOf="@+id/lstMatricula"
         app:layout_constraintTop_toBottomOf="@+id/lstMatricula" />
