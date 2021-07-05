@@ -45,9 +45,9 @@ class NotasActivity2 : AppCompatActivity() {
     private fun capturarCorreo(){
         for(alumnos in alumno){
             val lista = alumnos.toString().split("|","=")
-            var numeroCuentaAlumno = lista[1]
+            var numeroCuenta1 = lista[1]
             var emailAlumno = lista[3]
-            if(numeroCuentaAlumno.equals(numeroCuentaAlumno)){
+            if(numeroCuenta1.equals(numeroCuentaAlumno)){
                 correoAlumno = emailAlumno
                 return
             }
@@ -156,6 +156,7 @@ class NotasActivity2 : AppCompatActivity() {
             val mensaje = construirCorreo()
             message.setContent(mensaje,"text/html; charset=utf-8")
             Transport.send(message)
+           // Toast.makeText(this, "Correo Enviado", Toast.LENGTH_LONG).show()
         } catch (messagingException: MessagingException) {
             messagingException.printStackTrace()
         }
@@ -319,14 +320,16 @@ class NotasActivity2 : AppCompatActivity() {
                 var nota1:String
                 var nota2 :String
                 var nota3:String
-                var numeroCuenta2: String
+                var codigoClase: String
+                var numeroCuenta2:String
                 for (nota in notas) {
                     val lista3 = nota.toString().split("|", "=")
-                    numeroCuenta2= lista3[1]
+                    codigoClase= lista3[1]
                     nota1=lista3[2]
                     nota2=lista3[3]
                     nota3=lista3[4]
-                    if (prueba2[position].equals(numeroCuenta2)) {
+                    numeroCuenta2=lista3[5]
+                    if (prueba2[position].equals(codigoClase)&& spnNumeroCuenta.selectedItem.equals(numeroCuenta2)) {
                         txtNota.setText(nota1)
                         txtNota1.setText(nota2)
                         txtNota2.setText(nota3)
@@ -397,7 +400,7 @@ class NotasActivity2 : AppCompatActivity() {
 
         if (noVacio()== true&&noMasde100()==true ){
             btnEnviarCorreo.isEnabled = true
-            Toast.makeText(this, "$nombreEstudiante", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Informacion Guardada", Toast.LENGTH_LONG).show()
             limpiar()
 
         }
