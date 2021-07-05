@@ -22,6 +22,17 @@ class ClaseActivity : AppCompatActivity() {
         txtHora.setOnClickListener{showTimePicker()}
         btnRegClase.setOnClickListener {guardarRegistro() }
         btnEnviarC.setOnClickListener { enviarDatosC() }
+        txvIconCode.setOnClickListener { borrar() }
+    }
+
+    private fun borrar() {
+        txtCodigo.setText("")
+        txtNombreC.setText("")
+        txtHora.setText("")
+        txtAula.setText("")
+        txtEdificio.setText("")
+        txtSeccion.setText("")
+        txtPiso.setText("")
     }
 
     private fun showTimePicker() {

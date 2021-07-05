@@ -17,10 +17,14 @@ class AlumnoActivity : AppCompatActivity() {
       btnRegistrar.setOnClickListener { guardarRegistro() }
         llenarDatos()
         btnEnviar.setOnClickListener { enviarDatos() }
-
+        txvIconNumCuenta.setOnClickListener{borrar()}
 
     }
-
+    private fun borrar() {
+        txtCuenta.setText("")
+        txtNombre.setText("")
+        txtCorreo.setText("")
+    }
     private fun enviarDatos() {
         val intent = Intent(this,ClaseActivity::class.java)
         intent.putExtra("alumnos",alumno)

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo2"
     tools:context=".AlumnoActivity">
 
     <TextView
@@ -27,9 +28,9 @@
         android:layout_marginEnd="79dp"
         android:digits="1234567890"
         android:ems="10"
+        android:hint="Cuenta"
         android:inputType="number"
         android:maxLength="10"
-        android:hint="Cuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,9 +42,9 @@
         android:layout_marginEnd="79dp"
         android:digits="abcdefghijklmnñopqrstuvxwyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚáéíóúäëïöüÄËÏÖÜ"
         android:ems="10"
+        android:hint="Nombre"
         android:inputType="textPersonName"
         android:maxLength="50"
-        android:hint="Nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCuenta" />
 
@@ -54,9 +55,9 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="79dp"
         android:ems="10"
+        android:hint="Correo"
         android:inputType="textEmailAddress"
         android:maxLength="50"
-        android:hint="Correo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
@@ -78,4 +79,13 @@
         android:text="Enviar Datos"
         app:layout_constraintStart_toStartOf="@+id/btnRegistrar"
         app:layout_constraintTop_toBottomOf="@+id/btnRegistrar" />
+
+    <ImageView
+        android:id="@+id/txvIconNumCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCuenta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/numerocuenta" />
 </androidx.constraintlayout.widget.ConstraintLayout>
