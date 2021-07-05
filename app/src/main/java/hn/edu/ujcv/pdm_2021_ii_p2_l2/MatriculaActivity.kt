@@ -28,8 +28,9 @@ class MatriculaActivity : AppCompatActivity() {
     var contraseña:String = ""
     var session:Session? = null
     var contenidoMatricula =""
-    var claseMatriculada = " "
+    var claseMatriculadaAlumno = ArrayList<String>()
     var correoAlumno =""
+    var codigoClaseMatriculada = ""
 
     var listItems = ArrayList<String>()
     var adapter: ArrayAdapter<String>? = null
@@ -49,29 +50,53 @@ class MatriculaActivity : AppCompatActivity() {
 //    clase.put(numero++,"FIL1015|Filosofia|A|10:00 - 10:50|Academico 1-102")
     private fun construirCorreo():String{
         var mensaje = "Las clases matriculadas por el alumno: " + numeroCuenta + " son: <br><br>"
-        for(matriculas in matricula){
-            val lista = matriculas.toString().split("|","=")
-            var numCuenta = lista[1]
-            var claseMatriculada = lista[2].substring(0,7)
-            if(numCuenta.equals(numeroCuenta)){
-                for(clases in clase){
-                   val lista2 = clases.toString().split("|","=")
-                   val codigoClase = lista2[1]
-                   val nombreClase = lista2[2]
-                   val seccionClase = lista2[3]
-                   val horarioClase = lista2[4]
-                   val edificioClase = lista2[5]
-                   val pisoClase = lista2[6]
-                   val aulaClase = lista2[7]
-                   if(codigoClase.equals(claseMatriculada)){
-                       mensaje += "Código de clase: " + codigoClase + "<br> Nombre de la clase: " + nombreClase+
-                               "<br>Sección de la clase: " + seccionClase + "<br>Horario de la clase: " + horarioClase+
-                               "<br>Edificio de la clase: " + edificioClase + "<br>Piso de la clase: " + pisoClase+
-                               "<br>Aula de la clase: "+aulaClase +"<br><br>"
-                   }
-                }
-            }
+        var numCuenta = ""
+        var claseMatriculada = ""
+        var contador = 0
+        var numero = 1
+        var contadorClase = 1
+        var llevaLaClase = false
+        var contador2 = 1
+        claseMatriculadaAlumno.clear()
+        for(matriculas in matricula) {
+            val lista = matriculas.toString().split("|", "=")
+            numCuenta = lista[1]
+            claseMatriculada = lista[2].substring(0, 7)
+            claseMatriculadaAlumno.add(numCuenta + "|" + claseMatriculada)
         }
+                for(clases in clase){
+                    numero = 1
+                    contadorClase = 1
+                    contador2 = 1
+                    for(i in 0..(matricula.size-1)){
+                        numCuenta = matricula.getValue(numero++).substring(0,10)
+                        var codigoClase = matricula.getValue(contadorClase++).substring(11,(matricula.getValue(contador2++).length - 1))
+                        codigoClaseMatriculada = listItems.get(contador).substring(0,7)
+                        if(numCuenta.equals(numeroCuenta) && codigoClase.equals(codigoClaseMatriculada)){
+                            llevaLaClase = true
+                        }
+                    }
+                    if(!llevaLaClase){
+                        contador++
+                        continue
+                    }
+                    val lista2 = clases.toString().split("|","=")
+                    val codigoClase = lista2[1]
+                    val nombreClase = lista2[2]
+                    val seccionClase = lista2[3]
+                    val horarioClase = lista2[4]
+                    val edificioClase = lista2[5]
+                    val pisoClase = lista2[6]
+                    val aulaClase = lista2[7]
+                    val lista6 = claseMatriculadaAlumno.get(contador++).split("|")
+                    val codigoClaseMatriculada = lista6[1]
+                    if(codigoClase.equals(codigoClaseMatriculada)){
+                        mensaje += "Código de clase: " + codigoClase + "<br> Nombre de la clase: " + nombreClase+
+                                "<br>Sección de la clase: " + seccionClase + "<br>Horario de la clase: " + horarioClase+
+                                "<br>Edificio de la clase: " + edificioClase + "<br>Piso de la clase: " + pisoClase+
+                                "<br>Aula de la clase: "+aulaClase +"<br><br>"
+                    }
+                }
         return mensaje
     }
 //     alumno.put(numero++,"2017110190|Carlos Chamorro|carlos.chamorro@ujcv.edu.hn")
@@ -111,6 +136,7 @@ class MatriculaActivity : AppCompatActivity() {
             val email = InternetAddress(correo)
             message = mimessage
             message.setFrom(email)
+            numeroCuenta = spiNumeroCuenta.selectedItem.toString().substring(0,10)
             message.setSubject("Matrícula del alumno: " + numeroCuenta)
             capturarCorreo()
             message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(correoAlumno))
