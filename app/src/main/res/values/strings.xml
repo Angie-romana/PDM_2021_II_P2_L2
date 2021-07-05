@@ -17,4 +17,8 @@
     <string name="txtAula">Aula</string>
     <string name="txtEdificio">Edificio</string>
     <string name="txtNombreC">Nombre</string>
+    <string name="txvmatricula">Matrícula</string>
+    <string name="icononumerocuenta">Icono numero cuenta</string>
+    <string name="btnnotas">Notas</string>
+    <string name="btnenviarmatricula">Enviar Matrícula</string>
 </resources>

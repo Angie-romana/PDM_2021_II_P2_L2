@@ -16,55 +16,57 @@
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toTopOf="@+id/lstMatricula"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        app:layout_constraintStart_toEndOf="@+id/txvIconoMatricula"
+        app:layout_constraintTop_toTopOf="@+id/txvIconoMatricula" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txvTituloMatricula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
         android:layout_marginBottom="26dp"
-        android:text="Matrícula"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        android:text="@string/txvmatricula"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/txvIconoMatricula"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/textView2"
-        android:layout_width="49dp"
-        android:layout_height="54dp"
+        android:id="@+id/txvIconoMatricula"
+        android:layout_width="53dp"
+        android:layout_height="58dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="5dp"
+        android:contentDescription="@string/icononumerocuenta"
         app:layout_constraintBottom_toTopOf="@+id/lstMatricula"
         app:layout_constraintEnd_toStartOf="@+id/spiNumeroCuenta"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/txvTituloMatricula"
         app:srcCompat="@drawable/numerocuenta" />
-
-    <Button
-        android:id="@+id/btnMatricular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="24dp"
-        android:text="Matrícular"
-        app:layout_constraintBottom_toTopOf="@+id/btnNotas"
-        app:layout_constraintEnd_toStartOf="@+id/btnEnviarMatricula"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvMensajeError" />
 
     <Button
         android:id="@+id/btnEnviarMatricula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enviar Matrícula"
+        android:layout_marginEnd="76dp"
+        android:text="@string/btnenviarmatricula"
         app:layout_constraintBottom_toTopOf="@+id/btnNotas"
+        app:layout_constraintEnd_toStartOf="@+id/txvMensajeError"
+        app:layout_constraintTop_toBottomOf="@+id/txvMensajeError" />
+
+    <Button
+        android:id="@+id/btnNotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btnnotas"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnMatricular" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarMatricula" />
 
     <ListView
         android:id="@+id/lstMatricula"
@@ -74,30 +76,16 @@
         app:layout_constraintBottom_toTopOf="@+id/txvMensajeError"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/txvIconoMatricula" />
 
     <TextView
         android:id="@+id/txvMensajeError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/btnMatricular"
-        app:layout_constraintEnd_toEndOf="@+id/btnEnviarMatricula"
+        app:layout_constraintBottom_toTopOf="@+id/btnEnviarMatricula"
+        app:layout_constraintEnd_toEndOf="@+id/lstMatricula"
         app:layout_constraintTop_toBottomOf="@+id/lstMatricula" />
-
-    <Button
-        android:id="@+id/btnNotas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="154dp"
-        android:layout_marginEnd="147dp"
-        android:layout_marginBottom="16dp"
-        android:text="Notas"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnEnviarMatricula"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMatricular" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
