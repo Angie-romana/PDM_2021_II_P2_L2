@@ -4,58 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondomorado"
+    android:background="@drawable/fondo2"
     tools:context=".NotasActivity2">
+
+    <ImageView
+        android:id="@+id/txvIconoMatricula2"
+        android:layout_width="53dp"
+        android:layout_height="58dp"
+        android:contentDescription="@string/icononumerocuenta"
+        app:srcCompat="@drawable/numerocuenta"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="108dp" />
+
+    <ImageView
+        android:id="@+id/txvIconoMatricula3"
+        android:layout_width="53dp"
+        android:layout_height="58dp"
+        android:contentDescription="@string/icononumerocuenta"
+        app:srcCompat="@drawable/libros"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="194dp" />
 
     <Spinner
         android:id="@+id/spnNumeroCuenta"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="24dp"
-        android:background="#E1ACF8"
+        android:layout_width="292dp"
+        android:layout_height="55dp"
         android:dropDownSelector="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toTopOf="@+id/spnClasesMatriculadas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvNotas" />
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="111dp" />
 
     <Spinner
         android:id="@+id/spnClasesMatriculadas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="71dp"
+        android:layout_width="289dp"
+        android:layout_height="60dp"
 
-        android:background="#E1ACF8"
-        android:dropDownSelector="@color/design_default_color_error"
-        app:layout_constraintBottom_toTopOf="@+id/txtNota"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnNumeroCuenta" />
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="194dp" />
 
     <EditText
         android:id="@+id/txtNota1"
         android:layout_width="155dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
+        android:layout_height="58dp"
         android:ems="10"
         android:hint="Parcial 2"
         android:inputType="numberDecimal"
         android:maxLength="5"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/txtNota2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNota" />
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="401dp" />
 
     <EditText
         android:id="@+id/txtNota"
         android:layout_width="155dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="19dp"
+        android:layout_height="59dp"
         android:ems="10"
         android:hint="Parcial 1"
         android:inputType="numberDecimal"
@@ -63,61 +64,45 @@
         android:textColor="@color/black"
         android:textColorHighlight="@color/purple_500"
         android:textColorLink="@color/purple_700"
-        app:layout_constraintBottom_toTopOf="@+id/txtNota1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnClasesMatriculadas" />
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="323dp" />
 
     <EditText
         android:id="@+id/txtNota2"
         android:layout_width="155dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="55dp"
+        android:layout_height="59dp"
         android:ems="10"
         android:hint="Parcial 3"
         android:inputType="numberDecimal"
         android:maxLength="5"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuardar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNota1" />
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="474dp" />
 
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="96dp"
         android:text="Guardar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnEnviarCorreo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNota2" />
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="587dp" />
 
     <Button
         android:id="@+id/btnEnviarCorreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
         android:text="Enviar Correo"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnGuardar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnGuardar" />
+        tools:layout_editor_absoluteX="211dp"
+        tools:layout_editor_absoluteY="587dp" />
 
     <TextView
         android:id="@+id/txvNotas"
-        android:layout_width="130dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="128dp"
+        android:layout_height="37dp"
         android:text="Notas"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/spnNumeroCuenta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="59dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
