@@ -170,7 +170,7 @@ class MatriculaActivity : AppCompatActivity() {
         for(matriculas in matricula){
             val lista = matriculas.toString().split("|","=")
             numeroCuenta = lista[1]
-            codigoClase = lista[2]
+            codigoClase = lista[2].substring(0,7)
             var numeroARegistrar = spiNumeroCuenta.selectedItem.toString().substring(0,10)
             if(numeroCuenta.equals(numeroARegistrar) && codigoClase.equals(codigoClaseARegistrar)){
                 txvMensajeError.isVisible = true

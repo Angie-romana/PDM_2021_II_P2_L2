@@ -224,9 +224,9 @@ class NotasActivity2 : AppCompatActivity() {
                 for (matriculas in matricula) {
                     val lista2 = matriculas.toString().split("|", "=")
                     numeroCuenta = lista2[1]
-                    codigoClase = lista2[2]
-
-                    if (datos[position].contains(numeroCuenta)) {
+                    codigoClase = lista2[2].substring(0,7)
+                    numeroCuentaAlumno = spnNumeroCuenta.selectedItem.toString().substring(0,10)
+                    if (numeroCuentaAlumno.equals(numeroCuenta)) {
                         asignatura = añadirNombreAsignatura(codigoClase)
                         codigoClase=codigoClase.substring(0,7)
                         var dato2 = "$codigoClase-$asignatura"
@@ -454,7 +454,7 @@ class NotasActivity2 : AppCompatActivity() {
         var codigoClase: String
         for (clases in clase) {
             val lista = clases.toString().split("|", "=")
-            codigoClase = lista[1]
+            codigoClase = lista[1].substring(0,7)
             nombreAsignatura = lista[2]
             if (codigoClase.equals(codigo)){
                 var dato = "$nombreAsignatura"
