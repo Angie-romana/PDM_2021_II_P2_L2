@@ -74,16 +74,17 @@ class AlumnoActivity : AppCompatActivity() {
     }
     fun datosVacios():Boolean
     {
+        if(txtCuenta.text.toString().isEmpty())
+    {
+        txtCuenta.error = "Debe ingresar un numero de cuenta"
+        return false
+    }
         if (txtNombre.text.toString().isEmpty())
         {
             txtNombre.error = "Debe ingresar un nombre"
             return false
         }
-        if(txtCuenta.text.toString().isEmpty())
-        {
-            txtCuenta.error = "Debe ingresar un numero de cuenta"
-            return false
-        }
+
         if(txtCorreo.text.toString().isEmpty())
         {
             txtCorreo.error = "Debe ingresar un correo"
