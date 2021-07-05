@@ -15,14 +15,14 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="39dp"
-        android:text="@string/txvRegistroClases"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textColor="#0C0C0C"
         android:textColorHint="#090808"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtCodigo"
         app:layout_constraintEnd_toEndOf="@+id/txtCodigo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Registro de Clases" />
 
     <EditText
         android:id="@+id/txtNombreC"
@@ -70,13 +70,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="19dp"
         android:ems="10"
         android:hint="edificio"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/txtSeccion"
-        app:layout_constraintEnd_toEndOf="@+id/txtSeccion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintStart_toStartOf="@+id/txtSeccion"
         app:layout_constraintTop_toBottomOf="@+id/txtAula" />
 
@@ -85,7 +86,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="99dp"
         android:layout_marginBottom="14dp"
         android:digits="ABCabc"
         android:ems="10"
@@ -93,46 +94,48 @@
         android:inputType="textPersonName"
         android:maxLength="1"
         app:layout_constraintBottom_toTopOf="@+id/txtPiso"
-        app:layout_constraintEnd_toEndOf="@+id/txtPiso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
         app:layout_constraintStart_toStartOf="@+id/txtPiso"
         app:layout_constraintTop_toBottomOf="@+id/txtEdificio" />
 
     <Button
         android:id="@+id/btnEnviarC"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="77dp"
+        android:layout_width="113dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="45dp"
         android:text="Enviar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnRegClase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnRegClase" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnRegClase"
+        app:layout_constraintTop_toBottomOf="@+id/txtPiso" />
 
     <Button
         android:id="@+id/btnRegClase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="78dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="96dp"
+        android:layout_width="124dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="92dp"
         android:background="#0E0909"
         android:text="@string/btnRegClase"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnEnviarC"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPiso" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnEnviarC"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/txtPiso"
-        android:layout_width="216dp"
+        android:layout_width="204dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginTop="544dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="42dp"
         android:ems="10"
         android:hint="piso"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegClase"
+        app:layout_constraintBottom_toTopOf="@+id/btnEnviarC"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSeccion" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtCodigo"
@@ -157,6 +160,68 @@
         app:layout_constraintBottom_toBottomOf="@+id/txtCodigo"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/numerocuenta" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvIconCode"
+        app:srcCompat="@drawable/name" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/hour" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:srcCompat="@drawable/aula" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/txtEdificio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtEdificio"
+        app:srcCompat="@drawable/edificio" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="22dp"
+        app:layout_constraintEnd_toStartOf="@+id/txtSeccion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtSeccion"
+        app:srcCompat="@drawable/seccion" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="29dp"
+        app:layout_constraintEnd_toStartOf="@+id/txtPiso"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11"
+        app:srcCompat="@drawable/piso" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
