@@ -56,14 +56,18 @@ class AlumnoActivity : AppCompatActivity() {
 
     private fun guardarRegistro() {
         val dato = StringBuilder()
+        if(!datosVacios()){
+            return
+        }
+        if(!minLength()){
+            return
+        }
         numero+=1
         dato.append(txtCuenta.text.toString().trim()).append("|")
         dato.append(txtNombre.text.toString().trim()).append("|")
         dato.append(txtCorreo.text.toString().trim()).append("|")
         alumno.put(numero, dato.toString())
         btnRegistrar.isEnabled = true
-        minLength()
-        datosVacios()
 
         if(datosVacios()== true && minLength() == true)
         {

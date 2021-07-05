@@ -64,6 +64,12 @@ class ClaseActivity : AppCompatActivity() {
     }
     private fun guardarRegistro() {
         val dato = StringBuilder()
+        if(!datosVacios()){
+            return
+        }
+        if(!minLength()){
+            return
+        }
         numero+=1
         dato.append(txtCodigo.text.toString().trim()).append("|")
         dato.append(txtNombreC.text.toString().trim()).append("|")
@@ -73,8 +79,6 @@ class ClaseActivity : AppCompatActivity() {
         dato.append(txtPiso.text.toString().trim()).append("|")
         dato.append(txtAula.text.toString().trim()).append("|")
         clase.put(numero, dato.toString())
-        minLength()
-        datosVacios()
         btnRegClase.isEnabled = true
 
        if(datosVacios()== true && minLength() == true)
