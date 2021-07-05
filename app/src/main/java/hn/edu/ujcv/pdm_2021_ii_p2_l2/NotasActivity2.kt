@@ -1,21 +1,16 @@
 package hn.edu.ujcv.pdm_2021_ii_p2_l2
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
-import android.provider.Settings
 import android.view.View
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_matricula.*
 import kotlinx.android.synthetic.main.activity_notas2.*
 import java.util.*
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 import kotlin.collections.HashMap
-import java.util.*
 import javax.mail.*
-import javax.mail.internet.*
 import kotlin.collections.ArrayList as CollectionsArrayList
 
 class NotasActivity2 : AppCompatActivity() {
@@ -26,8 +21,8 @@ class NotasActivity2 : AppCompatActivity() {
     var matricula: HashMap<Int, String> = hashMapOf()
     var notas:HashMap<String, String> = hashMapOf()
     var datosGlobal = ArrayList<String>()
-    var valor =""
-    var valor2 =""
+    var codigoMateria =""
+    var nombreEstudiante =""
     var numero = ""
     var numeroCuentaAlumno = ""
     var correoAlumno = ""
@@ -39,7 +34,7 @@ class NotasActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_notas2)
 
         inicializar()
-        llenarSpiner()
+        llenarSpinerClases()
         btnGuardar.setOnClickListener { guardarNotas() }
         btnEnviarCorreo.setOnClickListener { generarCorreo() }
 
@@ -63,7 +58,34 @@ class NotasActivity2 : AppCompatActivity() {
         var mensaje = "Las notas de las clases matriculadas por el alumno: " + numeroCuentaAlumno + " son: <br><br>"
         var notasArray = ArrayList<String>()
         var clasesArray = ArrayList<String>()
-        for(matriculas in matricula){
+        var nombreCodigoAlumno:String
+        var codigoClase:String
+        var nota1:String
+        var nota2:String
+        var nota3:String
+        var mensaje2="NOOOOOOOOOOO"
+
+        for (notas in notas){
+            var lista= notas.toString().split("|","=")
+            nombreCodigoAlumno= lista[5]
+            codigoClase=lista[1]
+            nota1=lista[2]
+            nota2=lista[3]
+            nota3=lista[4]
+            if(spnNumeroCuenta.selectedItem.equals(nombreCodigoAlumno)){
+                notasArray.add("Codigo de clase :$codigoClase<br>" +
+                        "Primer Parcial: $nota1 <br>" +
+                        "Segundo Parcial:$nota2<br>" +
+                        "Tercer Parcial:$nota3 ]\n <br>" +
+                        "<br>[")
+
+            }
+
+        }
+        var totalArray =notasArray.size-1
+        mensaje2= notasArray.toString()
+
+        /*for(matriculas in matricula){
             val lista = matriculas.toString().split("|","=")
             var numCuenta = lista[1]
             var claseMatriculada = lista[2]
@@ -102,8 +124,9 @@ class NotasActivity2 : AppCompatActivity() {
                         "<br>Nota1: " + nota1Final + "<br>Nota2: " + nota2Final+
                         "<br>Nota3: " + nota3Final + "<br><br>"
             }
-        }
-        return mensaje
+        }*/
+
+        return mensaje2
     }
 
     private fun generarCorreo() {
@@ -166,7 +189,7 @@ class NotasActivity2 : AppCompatActivity() {
     }
 
 
-    fun llenarSpiner() {
+    fun llenarSpinerClases() {
         val default = "Seleccione un número de cuenta"
         var datos = ArrayList<String>()
         datos.add(default)
@@ -193,20 +216,21 @@ class NotasActivity2 : AppCompatActivity() {
                 //var default= "Clases Matriculadas"
 
                 var numeroCuenta: String
-                var codigoMatricula: String
+                var codigoClase: String
                 var asignatura: String
                 // datos2.add(default)
-                valor2=datos[position]
+                nombreEstudiante=datos[position]
 
                 for (matriculas in matricula) {
                     val lista2 = matriculas.toString().split("|", "=")
                     numeroCuenta = lista2[1]
-                    codigoMatricula = lista2[2]
+                    codigoClase = lista2[2]
 
                     if (datos[position].contains(numeroCuenta)) {
-                        asignatura = añadirNombreAsignatura(codigoMatricula)
-                        var dato2 = "$codigoMatricula-$asignatura"
-                        var datos2Global =  numeroCuenta+codigoMatricula
+                        asignatura = añadirNombreAsignatura(codigoClase)
+                        codigoClase=codigoClase.substring(0,7)
+                        var dato2 = "$codigoClase-$asignatura"
+
                         datos2.add(dato2)
 
 
@@ -282,7 +306,7 @@ class NotasActivity2 : AppCompatActivity() {
                 var asignatura: String
                 var llave:String
 
-                valor = prueba2[position]
+                codigoMateria = prueba2[position]
                 btnGuardar.isEnabled=true
 
                 for (matriculas in matricula) {
@@ -311,9 +335,6 @@ class NotasActivity2 : AppCompatActivity() {
                     }
 
 
-                    /*txtNota.setText()
-                txtNota1.setText()
-                txtNota2.setText()*/
                 }
 
                 for (nota in notas){
@@ -364,19 +385,19 @@ class NotasActivity2 : AppCompatActivity() {
 
         var dato = StringBuilder()
         numero+1
-        var valores=valor+"-"+valor2
-        var valores2="$valor"
+        var valores=codigoMateria+"-"+nombreEstudiante
+        var codigodeMateria="$codigoMateria"
         //  Toast.makeText(this, "$valores", Toast.LENGTH_SHORT).show()
-        dato.append(valores2.toString()).append("|")
+        dato.append(codigodeMateria.toString()).append("|")
         dato.append(txtNota.text.toString()).append("|")
         dato.append(txtNota1.text.toString()).append("|")
         dato.append(txtNota2.text.toString()).append("|")
-        // dato.append(promedio.toString()).append("|")
+         dato.append(nombreEstudiante.toString()).append("|")
         notas.put(valores, dato.toString())
 
         if (noVacio()== true&&noMasde100()==true ){
             btnEnviarCorreo.isEnabled = true
-            Toast.makeText(this, "$notas", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "$nombreEstudiante", Toast.LENGTH_LONG).show()
             limpiar()
 
         }
@@ -481,4 +502,3 @@ class NotasActivity2 : AppCompatActivity() {
     val lvDatos = findViewById<ListView>(R.id.lvNotas2)
     arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,datos)
     lvDatos.adapter= arrayAdapter*/
-
