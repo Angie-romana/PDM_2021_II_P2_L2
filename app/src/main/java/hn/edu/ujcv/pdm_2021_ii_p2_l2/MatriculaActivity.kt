@@ -65,6 +65,7 @@ class MatriculaActivity : AppCompatActivity() {
             claseMatriculadaAlumno.add(numCuenta + "|" + claseMatriculada)
         }
                 for(clases in clase){
+                    llevaLaClase = false
                     numero = 1
                     contadorClase = 1
                     contador2 = 1
